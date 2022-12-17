@@ -14,6 +14,13 @@ const Products = ({products}) => {
             mr='auto'>
             Products
         </Typography>
+        <Stack direction="row" justifyContent='center' mt='40px' spacing={2}>
+            <Button variant="outlined"  sx={{ color: 'black', borderColor: 'black'}}>All</Button>
+            <Button variant="outlined"  sx={{ color: 'black', borderColor: 'black'}}>Men's Clothing</Button>
+            <Button variant="outlined"  sx={{ color: 'black', borderColor: 'black'}}>Women's Clothing</Button>
+            <Button variant="outlined"  sx={{ color: 'black', borderColor: 'black'}}>Jewelery</Button>
+            <Button variant="outlined"  sx={{ color: 'black', borderColor: 'black'}}>Electronic</Button>
+        </Stack>
         <Stack direction="row" 
           sx={{ 
             gap: { lg: '110px', xs: '50px'}
