@@ -23,10 +23,11 @@ const Products = ({products}) => {
         </Stack>
         <Stack direction="row" 
           sx={{ 
-            gap: { lg: '110px', xs: '50px'}
+            gap: '30px'
           }}
           flexWrap="wrap" 
           justifyContent="center"
+          mt='35px'
         >
           {products && products.map(product => (
             <ProductCard key={product.id} product={product} />
