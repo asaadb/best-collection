@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Button, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system';
 
@@ -54,7 +54,16 @@ const ProductDetail = () => {
                         }}
                     >Add to Cart
                     </Button>
-                    <Button variant="contained" sx={{backgroundColor: 'black'}}>Go to Cart</Button>
+                    <Link to='/cart'>
+                        <Button variant="contained" 
+                            sx={{
+                                backgroundColor: 'black',
+                                textDecoration: 'none'
+                                }}
+                        >
+                        Go to Cart
+                        </Button>
+                    </Link>
                 </Stack>
             </Stack>
             </Stack>

@@ -19,7 +19,6 @@ import { Link } from 'react-router-dom';
 
 const pages = ['Home', 'Products'];
 
-
 const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = useState(null)
     const [anchorElUser, setAnchorElUser] = useState(null)
@@ -88,8 +87,8 @@ const Navbar = () => {
                   display: { xs: 'block', md: 'none' },
                 }}
               >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                {pages.map((page, index) => (
+                  <MenuItem key={index} onClick={handleCloseNavMenu}>
                     <Typography sx={{
                         color: 'black'
                     }} textAlign="center">{page}</Typography>
@@ -125,15 +124,17 @@ const Navbar = () => {
                 </Button>
               ))}
             </Box>
-            <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="black"
-              >
-                <Badge badgeContent={0} color="error">
-                  <ShoppingCartIcon />
-                </Badge>
-              </IconButton>
+            <Link to='/cart'>
+              <IconButton
+                  size="large"
+                  aria-label="show 17 new notifications"
+                  color="black"
+                >
+                  <Badge badgeContent={0} color="error">
+                      <ShoppingCartIcon />
+                  </Badge>
+                </IconButton>
+              </Link>
           </Toolbar>
         </Container>
       </AppBar>
