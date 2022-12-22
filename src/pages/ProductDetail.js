@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Button, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system';
 
-const ProductDetail = () => {
+const ProductDetail = ({handlleUpdateCart}) => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
 
@@ -49,9 +49,11 @@ const ProductDetail = () => {
                 </Typography>
                 <Typography variant='body1' paragraph>{product.description}</Typography>
                 <Stack direction='row' spacing={2}>
-                    <Button variant="contained" sx={{
+                    <Button 
+                        variant="contained" sx={{
                         backgroundColor: 'black'
                         }}
+                        onClick={() => handlleUpdateCart({productId: product.id, quantity: 1})}
                     >Add to Cart
                     </Button>
                     <Link to='/cart'>

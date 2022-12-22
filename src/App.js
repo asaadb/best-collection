@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 
 const App = () => {
   let [products, setProducts] = useState([]);
+  let [cart, setCart] = useState([]);
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
@@ -18,13 +19,29 @@ const App = () => {
         .catch(err => console.log('ERROR OCCURED WHILE FETCHING PRODUCTS:', err));
   }, [])
 
+function handlleUpdateCart(item) {
+
+  if (cart.length && cart.find((t) => t.productId === item.productId)) {
+    setCart(cart.map((i) => {
+      if (i.productId === item.productId) {
+        return {...i,  quantity: i.quantity + 1}
+       } else {
+        return i
+       }
+    }
+    ))
+  } else {
+    setCart([...cart, item])
+  }
+}
+
   return (
     <Box>
         <Navbar/>
         <Routes>
             <Route  path="/" element={<Home products={products}/>}/>
-            <Route path='/products/:id' element={<ProductDetail/>}/>
-            <Route path='/cart' element={<Cart products={products}/>}/>
+            <Route path='/products/:id' element={<ProductDetail handlleUpdateCart={handlleUpdateCart} />}/>
+            <Route path='/cart' element={<Cart/>}/>
         </Routes>
     </Box>
   )

@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
 
 const pages = ['Home', 'Products'];
 
-const Navbar = () => {
+const Navbar = ({cartLength}) => {
     const [anchorElNav, setAnchorElNav] = useState(null)
     const [anchorElUser, setAnchorElUser] = useState(null)
   
@@ -130,7 +130,7 @@ const Navbar = () => {
                   aria-label="show 17 new notifications"
                   color="black"
                 >
-                  <Badge badgeContent={0} color="error">
+                  <Badge badgeContent={cartLength} color="error">
                       <ShoppingCartIcon />
                   </Badge>
                 </IconButton>
