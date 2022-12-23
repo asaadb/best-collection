@@ -2,7 +2,7 @@ import { Button, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useEffect, useState } from 'react'
 
-const Cart = ({cart, products}) => {
+const Cart = ({cart, products, handlleAddToCart}) => {
   return (
     <Stack spacing={4} width='100%'>
                 <Typography variant='h2' 
@@ -52,12 +52,17 @@ const Cart = ({cart, products}) => {
                                 sx={{
                                     borderColor: 'black',
                                     color: 'black'
-                                }}>+</Button>
+                                }}
+                                onClick={() => {handlleAddToCart(product)}}
+                                
+                                >+</Button>
                             <Button variant="outlined"   
                                 sx={{
                                     borderColor: 'black',
                                     color: 'black',
-                                }}>-</Button>
+                                }}
+                                
+                                >-</Button>
                         </Stack>
                     </Stack>  
                 </Stack>

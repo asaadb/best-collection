@@ -43,7 +43,7 @@ let cartLength = cart.length ? cart.reduce((accumulator, currentValue) => accumu
         <Routes>
             <Route  path="/" element={<Home products={products}/>}/>
             <Route path='/products/:id' element={<ProductDetail handlleAddToCart={handlleAddToCart}/>}/>
-            <Route path='/cart' element={<Cart cart={cart} products={products}/>}/>
+            <Route path='/cart' element={<Cart cart={cart} products={products}  handlleAddToCart={handlleAddToCart}/>}/>
         </Routes>
     </Box>
   )
