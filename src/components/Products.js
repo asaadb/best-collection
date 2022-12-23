@@ -1,8 +1,12 @@
 import React from 'react';
 import { Box, Stack, Typography, Button } from '@mui/material';
-import ProductCard from './ProductCard'
+import ProductCard from './ProductCard';
+import { useState } from 'react'
 
-const Products = ({products}) => {
+const Products = ({products, categories}) => {
+  
+  const [filteredItems, setFilteredItems] = useState([...products])
+  
   return (
     <Box mt='50px'>
         <Typography variant='h3' 
@@ -14,13 +18,24 @@ const Products = ({products}) => {
             mr='auto'>
             Products
         </Typography>
-        <Stack direction="row" justifyContent='center' mt='40px' spacing={2}>
-            <Button variant="outlined"  sx={{ color: 'black', borderColor: 'black'}}>All</Button>
-            <Button variant="outlined"  sx={{ color: 'black', borderColor: 'black'}}>Men's Clothing</Button>
-            <Button variant="outlined"  sx={{ color: 'black', borderColor: 'black'}}>Women's Clothing</Button>
-            <Button variant="outlined"  sx={{ color: 'black', borderColor: 'black'}}>Jewelery</Button>
-            <Button variant="outlined"  sx={{ color: 'black', borderColor: 'black'}}>Electronic</Button>
+        {categories.length && (
+          <Stack direction="row" justifyContent='center' mt='40px' spacing={2}>
+            <Button variant="outlined"  sx={{ 
+                  color: 'black',
+                  borderColor: 'black'}}
+                  onClick={() => setFilteredItems([...products])}>All</Button>
+          {categories.map((category) => (
+              <Button key={category} variant="outlined"  
+                sx={{ 
+                  color: 'black',
+                  borderColor: 'black'
+                }}
+
+                onClick={() => setFilteredItems(products.filter((item) => item.category === category))}>{category}</Button>
+          ))}
         </Stack>
+        )}
+          
         <Stack direction="row" 
           sx={{ 
             gap: '30px'
@@ -29,7 +44,7 @@ const Products = ({products}) => {
           justifyContent="center"
           mt='35px'
         >
-          {products && products.map(product => (
+          {filteredItems.length && filteredItems.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
         </Stack>

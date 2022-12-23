@@ -11,12 +11,19 @@ import { useState, useEffect } from 'react';
 const App = () => {
   let [products, setProducts] = useState([]);
   let [cart, setCart] = useState([]);
+  let [categories, setCategories] = useState([]);
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
         .then(res => res.json())
         .then(data => setProducts(data))
         .catch(err => console.log('ERROR OCCURED WHILE FETCHING PRODUCTS:', err));
+
+    fetch('https://fakestoreapi.com/products/categories')
+      .then(res => res.json())
+      .then(data => setCategories(data))
+      .catch(err => console.log('ERROR OCCURED WHILE FETCHING CATEGORIES:', err));
+    
   }, [])
 
 function handlleAddToCart(item) {
@@ -55,7 +62,7 @@ let cartLength = cart.length ? cart.reduce((accumulator, currentValue) => accumu
     <Box>
         <Navbar cartLength={cartLength}/>
         <Routes>
-            <Route  path="/" element={<Home products={products}/>}/>
+            <Route  path="/" element={<Home products={products} categories={categories}/>}/>
             <Route path='/products/:id' element={<ProductDetail handlleAddToCart={handlleAddToCart}/>}/>
             <Route path='/cart' element={<Cart cart={cart} products={products}
                 handlleAddToCart={handlleAddToCart}

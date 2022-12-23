@@ -3,12 +3,15 @@ import Hero from '../components/Hero';
 import Products from '../components/Products';
 import { useEffect, useState } from 'react';
 
-const Home = ({products}) => {
+const Home = ({products, categories}) => {
   
   return (
     <>
         <Hero />
-        <Products products={products}/>
+        {(products.length && categories.length) &&
+           <Products products={products} categories={categories}/>
+         }
+        
     </>
   )
 }
