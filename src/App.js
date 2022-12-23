@@ -35,6 +35,10 @@ function handlleAddToCart(item) {
   }
 }
 
+function handleDeleteFromCart(item) {
+  setCart(cart.filter((i) => i.productId !== item.productId))
+}
+
 let cartLength = cart.length ? cart.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0) : 0;
 
   return (
@@ -43,7 +47,7 @@ let cartLength = cart.length ? cart.reduce((accumulator, currentValue) => accumu
         <Routes>
             <Route  path="/" element={<Home products={products}/>}/>
             <Route path='/products/:id' element={<ProductDetail handlleAddToCart={handlleAddToCart}/>}/>
-            <Route path='/cart' element={<Cart cart={cart} products={products}  handlleAddToCart={handlleAddToCart}/>}/>
+            <Route path='/cart' element={<Cart cart={cart} products={products}  handlleAddToCart={handlleAddToCart} handleDeleteFromCart={handleDeleteFromCart}/>}/>
         </Routes>
     </Box>
   )
