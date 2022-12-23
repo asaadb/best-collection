@@ -20,6 +20,7 @@ import { Link } from 'react-router-dom';
 const pages = ['Home', 'Products'];
 
 const Navbar = ({cartLength}) => {
+  
     const [anchorElNav, setAnchorElNav] = useState(null)
     const [anchorElUser, setAnchorElUser] = useState(null)
   

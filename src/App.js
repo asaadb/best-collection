@@ -35,12 +35,14 @@ function handlleUpdateCart(item) {
   }
 }
 
+let cartLength = cart.length ? cart.reduce((accumulator, currentValue) => accumulator + currentValue.quantity, 0) : 0;
+
   return (
     <Box>
-        <Navbar/>
+        <Navbar cartLength={cartLength}/>
         <Routes>
             <Route  path="/" element={<Home products={products}/>}/>
-            <Route path='/products/:id' element={<ProductDetail handlleUpdateCart={handlleUpdateCart} />}/>
+            <Route path='/products/:id' element={<ProductDetail handlleUpdateCart={handlleUpdateCart}/>}/>
             <Route path='/cart' element={<Cart/>}/>
         </Routes>
     </Box>
