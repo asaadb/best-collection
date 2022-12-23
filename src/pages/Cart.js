@@ -2,8 +2,7 @@ import { Button, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useEffect, useState } from 'react'
 
-const Cart = ({products}) => {
-
+const Cart = ({cart, products}) => {
   return (
     <Stack spacing={4} width='100%'>
                 <Typography variant='h2' 
@@ -12,8 +11,11 @@ const Cart = ({products}) => {
                     sx={{
                         fontSize: {lg: '60px', xs: '40px'}
                     }}>Shopping Cart</Typography>
-        {products && products.map((product) => (
-            <Box boxShadow= 'rgba(0, 0, 0, 0.24) 0px 3px 8px'
+        {cart.length ? (cart.map((product) => {
+            let item = products.find((i) => i.id === product.productId)
+            
+            return (
+            <Box key={product.productId} boxShadow= 'rgba(0, 0, 0, 0.24) 0px 3px 8px'
                 p='10px'
             >
                 <Stack maxWidth='800px'
@@ -26,7 +28,7 @@ const Cart = ({products}) => {
                         }}
                         
                 >
-                    <img src={product.image} style={{
+                    <img src={item.image} style={{
                         width: '150px',
                         hieght: ' 150px',
                     }} 
@@ -34,13 +36,13 @@ const Cart = ({products}) => {
                     <Stack spacing={1} maxWidth='300x'>
                         <Typography variant='h3' 
                             fontSize='25px'
-                            fontWeight={700}>{product.title}</Typography>
+                            fontWeight={700}>{item.title}</Typography>
                         <Typography variant='h3' 
                             fontSize='18px' 
                             sx={{ 
                                 textAlign: {lg: 'left', sm: 'left', xs: 'center'}
                             }}
-                            fontWeight={700}>2 x ${product.price} = ${product.price * 2}</Typography>
+                            fontWeight={700}>{product.quantity} x {item.price} = ${product.quantity * item.price}</Typography>
                         <Stack direction='row'
                             spacing={2}
                             sx={{ 
@@ -60,7 +62,15 @@ const Cart = ({products}) => {
                     </Stack>  
                 </Stack>
             </Box>
-        ))}
+        )})) : (
+            <Typography variant='h4'
+                textAlign='center'
+                sx={{ 
+                    backgroundColor: '#eaeded',
+                    p:'20px'
+                }}
+            > Your Cart is empty</Typography>
+        )}
     </Stack>
   )
 }
