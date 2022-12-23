@@ -19,7 +19,7 @@ const App = () => {
         .catch(err => console.log('ERROR OCCURED WHILE FETCHING PRODUCTS:', err));
   }, [])
 
-function handlleUpdateCart(item) {
+function handlleAddToCart(item) {
 
   if (cart.length && cart.find((t) => t.productId === item.productId)) {
     setCart(cart.map((i) => {
@@ -42,7 +42,7 @@ let cartLength = cart.length ? cart.reduce((accumulator, currentValue) => accumu
         <Navbar cartLength={cartLength}/>
         <Routes>
             <Route  path="/" element={<Home products={products}/>}/>
-            <Route path='/products/:id' element={<ProductDetail handlleUpdateCart={handlleUpdateCart}/>}/>
+            <Route path='/products/:id' element={<ProductDetail handlleAddToCart={handlleAddToCart}/>}/>
             <Route path='/cart' element={<Cart/>}/>
         </Routes>
     </Box>
