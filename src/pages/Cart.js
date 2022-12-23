@@ -2,7 +2,7 @@ import { Button, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useEffect, useState } from 'react'
 
-const Cart = ({cart, products, handlleAddToCart, handleDeleteFromCart}) => {
+const Cart = ({cart, products, handlleAddToCart, handleDeleteFromCart, handleRemoveFromCart}) => {
   return (
     <Stack spacing={4} width='100%'>
                 <Typography variant='h2' 
@@ -61,6 +61,13 @@ const Cart = ({cart, products, handlleAddToCart, handleDeleteFromCart}) => {
                                     borderColor: 'black',
                                     color: 'black',
                                 }}
+                                onClick={() => {
+                                    if( product.quantity > 1) {
+                                        handleRemoveFromCart(product)
+                                    } else {
+                                        handleDeleteFromCart(product)
+                                    }
+                                } }
                                 
                                 >-</Button>
                                 <Button onClick={() => handleDeleteFromCart(product)}>Delete</Button>
