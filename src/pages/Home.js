@@ -8,7 +8,7 @@ const Home = ({products, categories}) => {
   return (
     <>
         <Hero />
-        {(products.length && categories.length) &&
+        {products.length > 0  &&
            <Products products={products} categories={categories}/>
          }
         

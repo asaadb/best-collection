@@ -18,7 +18,7 @@ const Products = ({products, categories}) => {
             mr='auto'>
             Products
         </Typography>
-        {categories.length && (
+        {categories.length > 0 && (
           <Stack direction="row" justifyContent='center' mt='40px' spacing={2}>
             <Button variant="outlined"  sx={{ 
                   color: 'black',
@@ -44,7 +44,7 @@ const Products = ({products, categories}) => {
           justifyContent="center"
           mt='35px'
         >
-          {filteredItems.length && filteredItems.map(product => (
+          {filteredItems.length > 0 && filteredItems.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
         </Stack>
