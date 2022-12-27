@@ -17,7 +17,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
 
 
-const pages = ['Home', 'Products'];
+const pages = [<Link style={{ textDecoration: 'none', color: 'black'}} to='/'>Home</Link>, <a href='/#products' style={{ textDecoration: 'none', color: 'black'}}>Products</a>];
 
 const Navbar = ({cartLength}) => {
   

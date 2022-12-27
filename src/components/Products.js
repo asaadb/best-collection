@@ -8,7 +8,7 @@ const Products = ({products, categories}) => {
   const [filteredItems, setFilteredItems] = useState([...products])
   
   return (
-    <Box mt='50px'>
+    <Box id='products' mt='50px'>
         <Typography variant='h3' 
             textAlign='center' 
             pb='15px'
