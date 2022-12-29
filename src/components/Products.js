@@ -19,16 +19,19 @@ const Products = ({products, categories}) => {
             Products
         </Typography>
         {categories.length > 0 && (
-          <Stack direction="row" justifyContent='center' mt='40px' spacing={2}>
+          <Stack direction="row" justifyContent='center' alignContent='center' alignItems='center' sx={{flexWrap:'wrap'}} mt='40px' gap={1.5}>
             <Button variant="outlined"  sx={{ 
                   color: 'black',
-                  borderColor: 'black'}}
+                  borderColor: 'black',
+                  fontSize: {lg: '17px',  xs:'13px'}
+                }}
                   onClick={() => setFilteredItems([...products])}>All</Button>
           {categories.map((category) => (
               <Button key={category} variant="outlined"  
                 sx={{ 
                   color: 'black',
-                  borderColor: 'black'
+                  borderColor: 'black',
+                  fontSize: {lg: '17px',  xs:'13px'},
                 }}
 
                 onClick={() => setFilteredItems(products.filter((item) => item.category === category))}>{category}</Button>
