@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom';
 import { Button, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system';
+import Loader from '../components/Loader';
 
 const ProductDetail = ({handlleAddToCart}) => {
     const { id } = useParams();
@@ -15,7 +16,7 @@ const ProductDetail = ({handlleAddToCart}) => {
 
   return (
     <Box m='50px'> 
-        {product && (
+        {product ? (
             <Stack direction='row' 
                 gap='30px'
                 justifyContent='center'
@@ -69,7 +70,7 @@ const ProductDetail = ({handlleAddToCart}) => {
                 </Stack>
             </Stack>
             </Stack>
-        )}
+        ): (<Loader/>)}
     </Box>
   )
 }
