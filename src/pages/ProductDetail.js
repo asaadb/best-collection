@@ -57,11 +57,10 @@ const ProductDetail = ({handlleAddToCart}) => {
                         onClick={() => handlleAddToCart({productId: product.id, quantity: 1})}
                     >Add to Cart
                     </Button>
-                    <Link to='/cart'>
+                    <Link to='/cart' style={{textDecoration: 'none'}}>
                         <Button variant="contained" 
                             sx={{
                                 backgroundColor: 'black',
-                                textDecoration: 'none'
                                 }}
                         >
                         Go to Cart

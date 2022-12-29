@@ -27,7 +27,7 @@ const ProductCard = ({product}) => {
       </CardContent>
     </CardActionArea>
     <CardActions sx={{justifyContent: 'center'}}>
-      <Link to={`/products/${product.id}`}>
+      <Link to={`/products/${product.id}`} style={{textDecoration: 'none'}}>
         <Button variant="contained" sx={{ backgroundColor: 'black'}}>
           Buy now
         </Button>
