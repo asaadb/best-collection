@@ -8,6 +8,7 @@ import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import { useState, useEffect } from 'react';
 import { getProducts, getCategories } from './utils/fetchData';
+import NotFound from './pages/NotFound'
 
 const App = () => {
   let [products, setProducts] = useState([]);
@@ -61,6 +62,7 @@ let cartLength = cart.length ? cart.reduce((accumulator, currentValue) => accumu
                 handlleAddToCart={handlleAddToCart}
                 handleDeleteFromCart={handleDeleteFromCart}
                 handleRemoveFromCart={handleRemoveFromCart}/>}/>
+                <Route path="/*" element={<NotFound/>}/>
         </Routes>
     </Box>
   )
