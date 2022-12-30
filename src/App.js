@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import { useState, useEffect } from 'react';
+import { getProducts, getCategories } from './utils/fetchData';
 
 const App = () => {
   let [products, setProducts] = useState([]);
@@ -14,16 +15,8 @@ const App = () => {
   let [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
-        .then(res => res.json())
-        .then(data => setProducts(data))
-        .catch(err => console.log('ERROR OCCURED WHILE FETCHING PRODUCTS:', err));
-
-    fetch('https://fakestoreapi.com/products/categories')
-      .then(res => res.json())
-      .then(data => setCategories(data))
-      .catch(err => console.log('ERROR OCCURED WHILE FETCHING CATEGORIES:', err));
-    
+  getProducts().then((data) => setProducts(data))
+  getCategories().then((data) => setCategories(data))
   }, [])
 
 function handlleAddToCart(item) {

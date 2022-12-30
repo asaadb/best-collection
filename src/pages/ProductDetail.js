@@ -3,15 +3,14 @@ import { useParams, Link } from 'react-router-dom';
 import { Button, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system';
 import Loader from '../components/Loader';
+import { getProduct } from '../utils/fetchData';
 
 const ProductDetail = ({handlleAddToCart}) => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
 
     useEffect(() => {
-        fetch(`https://fakestoreapi.com/products/${id}`)
-            .then(res => res.json())
-            .then(res => setProduct(res))
+        getProduct(id).then((data) => setProduct(data))
     }, [id])
 
   return (
