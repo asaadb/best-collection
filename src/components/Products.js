@@ -1,11 +1,18 @@
 import React from 'react';
 import { Box, Stack, Typography, Button } from '@mui/material';
 import ProductCard from './ProductCard';
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
+import { useContext } from 'react';
+import { ProductsContext } from '../contexts/Contexts';
+import Loader from './Loader';
 
-const Products = ({products, categories}) => {
-  
+const Products = () => {
+
+  const { products, categories } = useContext(ProductsContext)
   const [filteredItems, setFilteredItems] = useState([...products])
+  useEffect(() => {
+    setFilteredItems(products)
+  }, [products])
   
   return (
     <Box id='products' mt='50px'>
@@ -18,7 +25,8 @@ const Products = ({products, categories}) => {
             mr='auto'>
             Products
         </Typography>
-        {categories.length > 0 && (
+        {(categories.length && products.length) ? (
+          <>
           <Stack direction="row" justifyContent='center' alignContent='center' alignItems='center' sx={{flexWrap:'wrap'}} mt='40px' gap={1.5}>
             <Button variant="outlined"  sx={{ 
                   color: 'black',
@@ -37,20 +45,22 @@ const Products = ({products, categories}) => {
                 onClick={() => setFilteredItems(products.filter((item) => item.category === category))}>{category}</Button>
           ))}
         </Stack>
+         <Stack direction="row" 
+         sx={{ 
+           gap: '30px'
+         }}
+         flexWrap="wrap" 
+         justifyContent="center"
+         mt='35px'
+       >
+         {filteredItems.map(product => (
+           <ProductCard key={product.id} product={product} />
+         ))}
+       </Stack>
+       </>
+        ) : (
+          <Loader/>
         )}
-          
-        <Stack direction="row" 
-          sx={{ 
-            gap: '30px'
-          }}
-          flexWrap="wrap" 
-          justifyContent="center"
-          mt='35px'
-        >
-          {filteredItems.length > 0 && filteredItems.map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </Stack>
     </Box>
   )
 }

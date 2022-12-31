@@ -1,8 +1,11 @@
 import { Button, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { CartContext, ProductsContext } from '../contexts/Contexts'
 
-const Cart = ({cart, products, handlleAddToCart, handleDeleteFromCart, handleRemoveFromCart}) => {
+const Cart = () => {
+    const { products } = useContext(ProductsContext);
+    const { cart, handlleAddToCart, handleDeleteFromCart, handleRemoveFromCart } = useContext(CartContext);
   return (
     <Stack spacing={4} width='100%'>
                 <Typography variant='h2' 

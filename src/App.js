@@ -8,7 +8,8 @@ import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import { useState, useEffect } from 'react';
 import { getProducts, getCategories } from './utils/fetchData';
-import NotFound from './pages/NotFound'
+import NotFound from './pages/NotFound';
+import { ProductsContext, CartContext } from './contexts/Contexts';
 
 const App = () => {
   let [products, setProducts] = useState([]);
@@ -55,15 +56,17 @@ let cartLength = cart.length ? cart.reduce((accumulator, currentValue) => accumu
   return (
     <Box>
         <Navbar cartLength={cartLength}/>
-        <Routes>
-            <Route  path="/" element={<Home products={products} categories={categories}/>}/>
-            <Route path='/products/:id' element={<ProductDetail handlleAddToCart={handlleAddToCart}/>}/>
-            <Route path='/cart' element={<Cart cart={cart} products={products}
-                handlleAddToCart={handlleAddToCart}
-                handleDeleteFromCart={handleDeleteFromCart}
-                handleRemoveFromCart={handleRemoveFromCart}/>}/>
-                <Route path="/*" element={<NotFound/>}/>
-        </Routes>
+        <ProductsContext.Provider value ={{ products, categories }}>
+          <CartContext.Provider value = {{ cart, handleDeleteFromCart, handleRemoveFromCart, handlleAddToCart }}>
+            <Routes>
+                <Route  path="/" element={<Home products={products} categories={categories}/>}/>
+                <Route  path="/" element={<Home/>}/>
+                <Route path='/products/:id' element={<ProductDetail/>}/>
+                <Route path='/cart' element={<Cart/>}/>
+                <Route path="/*" element={<NotFound/>}/>    
+            </Routes>
+          </CartContext.Provider>
+        </ProductsContext.Provider>
     </Box>
   )
 }

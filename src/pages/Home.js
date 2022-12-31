@@ -5,18 +5,11 @@ import { useState, useEffect } from 'react';
 import BeatLoader from "react-spinners/BeatLoader";
 import Loader from '../components/Loader';
 
-const Home = ({products, categories}) => {
+const Home = () => {
   return (
     <>
-        <Hero />
-        {products.length > 0 ? (
-          <Products products={products} categories={categories}/>
-        ) : (
-            <Loader/>
-        )
-           
-         }
-        
+      <Hero />   
+      <Products/>   
     </>
   )
 }
