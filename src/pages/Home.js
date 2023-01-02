@@ -1,17 +1,14 @@
-import React from 'react';
-import Hero from '../components/Hero';
-import Products from '../components/Products';
-import { useState, useEffect } from 'react';
-import BeatLoader from "react-spinners/BeatLoader";
-import Loader from '../components/Loader';
+import React from "react";
+import Hero from "../components/Hero";
+import Products from "../components/Products";
 
 const Home = () => {
   return (
     <>
-      <Hero />   
-      <Products/>   
+      <Hero />
+      <Products />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
