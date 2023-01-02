@@ -3,17 +3,15 @@ import { useParams, Link } from 'react-router-dom';
 import { Button, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system';
 import Loader from '../components/Loader';
-import { getProduct } from '../utils/fetchData';
 import { CartContext } from '../contexts/Contexts';
+import { ProductsContext } from '../contexts/Contexts';
 
 const ProductDetail = () => {
     const { id } = useParams();
-    const [product, setProduct] = useState(null);
     const { handlleAddToCart } = useContext(CartContext);
+    const { products } = useContext(ProductsContext)
 
-    useEffect(() => {
-        getProduct(id).then((data) => setProduct(data))
-    }, [id])
+const product = products.find((item) => item.id === Number(id))
 
   return (
     <Box m='50px'> 
