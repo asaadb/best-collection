@@ -96,18 +96,36 @@ const Navbar = ({ cartLength }) => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page, index) => (
-                <MenuItem key={index} onClick={handleCloseNavMenu}>
-                  <Typography
-                    sx={{
-                      color: "black",
-                    }}
-                    textAlign="center"
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography
+                  sx={{
+                    color: "black",
+                  }}
+                  textAlign="center"
+                >
+                  <Link
+                    style={{ textDecoration: "none", color: "black" }}
+                    to="/"
                   >
-                    {page}
-                  </Typography>
-                </MenuItem>
-              ))}
+                    Home
+                  </Link>
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography
+                  sx={{
+                    color: "black",
+                  }}
+                  textAlign="center"
+                >
+                  <a
+                    href="/#products"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    Products
+                  </a>
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <Typography
@@ -130,15 +148,25 @@ const Navbar = ({ cartLength }) => {
             </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "black", display: "block" }}
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: "black", display: "block" }}
+            >
+              <Link style={{ textDecoration: "none", color: "black" }} to="/">
+                Home
+              </Link>
+            </Button>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: "black", display: "block" }}
+            >
+              <a
+                href="/#products"
+                style={{ textDecoration: "none", color: "black" }}
               >
-                {page}
-              </Button>
-            ))}
+                Products
+              </a>
+            </Button>
           </Box>
           <Link to="/cart">
             <IconButton
