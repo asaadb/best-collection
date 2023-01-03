@@ -14,15 +14,6 @@ import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
 
-const pages = [
-  <Link style={{ textDecoration: "none", color: "black" }} to="/">
-    Home
-  </Link>,
-  <a href="/#products" style={{ textDecoration: "none", color: "black" }}>
-    Products
-  </a>,
-];
-
 const Navbar = ({ cartLength }) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -52,7 +43,6 @@ const Navbar = ({ cartLength }) => {
           <Typography
             variant="h6"
             noWrap
-            component="a"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -131,8 +121,6 @@ const Navbar = ({ cartLength }) => {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href=""
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
