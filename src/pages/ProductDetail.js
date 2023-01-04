@@ -12,25 +12,18 @@ const ProductDetail = () => {
   const product = products.find((item) => item.id === Number(id));
 
   return (
-    <Box m="50px">
+    <Box m="auto" p="45px" maxWidth="1000px">
       {product ? (
         <Stack
-          direction="row"
           gap="30px"
           justifyContent="center"
           alignItems="center"
-          sx={{
-            flexDirection: { lg: "row", md: "row", xs: "column" },
-          }}
+          direction={{ lg: "row", md: "row", xs: "column" }}
         >
-          <Box width="50%" textAlign="center">
-            <img
-              src={product.image}
-              alt={product.title}
-              style={{ maxWidth: "400px", maxHeight: "400px" }}
-            />
+          <Box maxWidth={{ xs: "70%" }}>
+            <img src={product.image} alt={product.title} width="100%" />
           </Box>
-          <Stack spacing={2}>
+          <Stack spacing={2} maxWidth="650px">
             <Typography
               variant="h4"
               color="#878787"
