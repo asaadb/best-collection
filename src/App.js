@@ -76,8 +76,12 @@ const App = () => {
               path="/"
               element={<Home products={products} categories={categories} />}
             />
-            <Route path="/" element={<Home />} />
-            <Route path="/products/:id" element={<ProductDetail />} />
+            <Route
+              path="/products/:id"
+              element={
+                <ProductDetail isLoading={products.length ? false : true} />
+              }
+            />
             <Route path="/cart" element={<Cart />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
