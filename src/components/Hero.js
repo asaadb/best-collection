@@ -4,41 +4,41 @@ import HeroImage from "../assets/images/HeroImage.jpg";
 
 const Hero = () => {
   return (
-    <Box
-      sx={{
-        backgroundImage: `url(${HeroImage})`,
-        width: "100%",
-        height: "100vh",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center center",
-        backgroundSize: "cover",
-      }}
+    <Stack
+      direction={{ lg: "row", sm: "column" }}
+      justifyContent="center"
+      width="100%"
+      height="100vh"
+      backgroundColor="#fbfbfb"
+      alignItems="center"
+      spacing={2}
     >
-      <Stack width="100%" height="100%" pl="20px">
+      <Stack p="30px" maxWidth="420px">
         <Typography
           fontWeight={700}
-          sx={{
-            fontSize: { lg: "45px", xs: "28px" },
-            mt: { lg: "60px", xs: "35px" },
-          }}
+          fontSize="2.375rem"
           mb="5px"
-          textAlign="left"
-          color="white"
+          color="#3f3d56"
         >
-          NEW SEASON ARRAIVALS
+          New Season{" "}
+          <Typography
+            component="span"
+            fontWeight="inherit"
+            fontSize="inherit"
+            color="#6c63ff"
+          >
+            Arraivals
+          </Typography>
         </Typography>
-        <Typography
-          fontWeight={400}
-          sx={{
-            fontSize: { lg: "30px", xs: "20px" },
-          }}
-          textAlign="left"
-          color="white"
-        >
-          CHECK OUT ALL TEH TRENDS
+        <Typography variant="subtitle">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </Typography>
       </Stack>
-    </Box>
+      <Box p="30px" maxWidth="500px">
+        <img src={HeroImage} alt="banner" width="100%" height="400px" />
+      </Box>
+    </Stack>
   );
 };
 
