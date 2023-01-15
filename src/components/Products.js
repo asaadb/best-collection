@@ -26,61 +26,62 @@ const Products = () => {
       >
         Products
       </Typography>
-      {categories.length && products.length ? (
-        <>
-          <Stack
-            direction="row"
-            justifyContent="center"
-            alignContent="center"
-            alignItems="center"
-            sx={{ flexWrap: "wrap" }}
-            mt="40px"
-            gap={1.5}
+      {categories && categories.length > 0 && (
+        <Stack
+          direction="row"
+          justifyContent="center"
+          alignContent="center"
+          alignItems="center"
+          sx={{ flexWrap: "wrap" }}
+          mt="40px"
+          gap={1.5}
+        >
+          <Button
+            variant="outlined"
+            sx={{
+              color: "black",
+              borderColor: "black",
+              fontSize: { lg: "17px", xs: "13px" },
+            }}
+            onClick={() => setFilteredItems([...products])}
           >
+            All
+          </Button>
+          {categories.map((category) => (
             <Button
+              key={category}
               variant="outlined"
               sx={{
                 color: "black",
                 borderColor: "black",
                 fontSize: { lg: "17px", xs: "13px" },
               }}
-              onClick={() => setFilteredItems([...products])}
+              onClick={() =>
+                setFilteredItems(
+                  products.filter((item) => item.category === category)
+                )
+              }
             >
-              All
+              {category}
             </Button>
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant="outlined"
-                sx={{
-                  color: "black",
-                  borderColor: "black",
-                  fontSize: { lg: "17px", xs: "13px" },
-                }}
-                onClick={() =>
-                  setFilteredItems(
-                    products.filter((item) => item.category === category)
-                  )
-                }
-              >
-                {category}
-              </Button>
-            ))}
-          </Stack>
-          <Stack
-            direction="row"
-            sx={{
-              gap: "30px",
-            }}
-            flexWrap="wrap"
-            justifyContent="center"
-            mt="35px"
-          >
-            {filteredItems.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </Stack>
-        </>
+          ))}
+        </Stack>
+      )}
+
+      {products && products.length > 0 ? (
+        <Stack
+          direction="row"
+          sx={{
+            gap: "30px",
+          }}
+          flexWrap="wrap"
+          justifyContent="center"
+          mt="35px"
+        >
+          {filteredItems.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </Stack>
       ) : (
         <Loader />
       )}
