@@ -7,9 +7,10 @@ const Cart = () => {
   const { products } = useContext(ProductsContext);
   const { cart, handlleAddToCart, handleDeleteFromCart, handleRemoveFromCart } =
     useContext(CartContext);
+  let total = 0;
 
   return (
-    <Stack spacing={4} width="100%">
+    <Stack spacing={4} width="100%" mb="100px">
       <Typography
         variant="h2"
         mt="30px"
@@ -23,6 +24,7 @@ const Cart = () => {
       {cart.length ? (
         cart.map((product) => {
           let item = products.find((i) => i.id === product.productId);
+          total += item.price * product.quantity;
 
           return (
             <Box
@@ -37,7 +39,7 @@ const Cart = () => {
                 alignItems="center"
                 sx={{
                   flexDirection: { lg: "row", sm: "row", xs: "column" },
-                  gap: "30px",
+                  gap: "50px",
                 }}
               >
                 <img
@@ -122,6 +124,19 @@ const Cart = () => {
           Your Cart is empty
         </Typography>
       )}
+      <Typography
+        variant="h5"
+        width="100%"
+        p="1rem"
+        boxShadow="rgba(0, 0, 0.2, 0.24) 0px 3px 8px"
+        sx={{
+          position: "fixed",
+          bottom: "0",
+          backgroundColor: "white",
+        }}
+      >
+        Total: ${total}
+      </Typography>
     </Stack>
   );
 };
