@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,10 +13,18 @@ import MenuItem from "@mui/material/MenuItem";
 import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
+import { CartContext } from "../contexts/Contexts";
 
-const Navbar = ({ cartLength }) => {
+const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const { cart } = useContext(CartContext);
+  let cartLength = cart.length
+    ? cart.reduce(
+        (accumulator, currentValue) => accumulator + currentValue.quantity,
+        0
+      )
+    : 0;
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);

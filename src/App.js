@@ -52,16 +52,8 @@ const App = () => {
     );
   }
 
-  let cartLength = cart.length
-    ? cart.reduce(
-        (accumulator, currentValue) => accumulator + currentValue.quantity,
-        0
-      )
-    : 0;
-
   return (
     <Box>
-      <Navbar cartLength={cartLength} />
       <ProductsContext.Provider value={{ products, categories }}>
         <CartContext.Provider
           value={{
@@ -71,6 +63,7 @@ const App = () => {
             handlleAddToCart,
           }}
         >
+          <Navbar />
           <Routes>
             <Route
               path="/"
