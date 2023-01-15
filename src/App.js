@@ -65,10 +65,7 @@ const App = () => {
         >
           <Navbar />
           <Routes>
-            <Route
-              path="/"
-              element={<Home products={products} categories={categories} />}
-            />
+            <Route path="/" element={<Home />} />
             <Route
               path="/products/:id"
               element={
