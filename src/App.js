@@ -9,16 +9,12 @@ import { useState, useEffect } from "react";
 import { getProducts, getCategories } from "./utils/fetchData";
 import NotFound from "./pages/NotFound";
 import { ProductsContext, CartContext } from "./contexts/Contexts";
+import useData from "./hooks/useData";
 
 const App = () => {
-  let [products, setProducts] = useState([]);
-  let [cart, setCart] = useState([]);
-  let [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    getProducts().then((data) => setProducts(data));
-    getCategories().then((data) => setCategories(data));
-  }, []);
+  const products = useData(getProducts);
+  const categories = useData(getCategories);
+  const [cart, setCart] = useState([]);
 
   function handlleAddToCart(item) {
     if (cart.length && cart.find((t) => t.productId === item.productId)) {
