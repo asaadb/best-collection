@@ -27,7 +27,7 @@ const Hero = () => {
             fontSize="inherit"
             color="#6c63ff"
           >
-            Arraivals
+            Arrivals
           </Typography>
         </Typography>
         <Typography variant="subtitle">
