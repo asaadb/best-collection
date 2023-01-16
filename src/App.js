@@ -5,15 +5,23 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
-import { useState, useEffect } from "react";
-import { getProducts, getCategories } from "./utils/fetchData";
+import { useState } from "react";
+import { productsUrl, categoriesUrl } from "./utils/dataUrls";
 import NotFound from "./pages/NotFound";
 import { ProductsContext, CartContext } from "./contexts/Contexts";
 import useData from "./hooks/useData";
 
 const App = () => {
-  const products = useData(getProducts);
-  const categories = useData(getCategories);
+  const {
+    data: products,
+    error: productsError,
+    isLoading: productsLoading,
+  } = useData(productsUrl);
+  const {
+    data: categories,
+    error: categoriesError,
+    isLoading: categoriesLoading,
+  } = useData(categoriesUrl);
   const [cart, setCart] = useState([]);
 
   function handlleAddToCart(item) {
@@ -50,7 +58,16 @@ const App = () => {
 
   return (
     <Box>
-      <ProductsContext.Provider value={{ products, categories }}>
+      <ProductsContext.Provider
+        value={{
+          products,
+          categories,
+          productsError,
+          categoriesError,
+          productsLoading,
+          categoriesLoading,
+        }}
+      >
         <CartContext.Provider
           value={{
             cart,
@@ -62,12 +79,7 @@ const App = () => {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route
-              path="/products/:id"
-              element={
-                <ProductDetail isLoading={products.length ? false : true} />
-              }
-            />
+            <Route path="/products/:id" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>

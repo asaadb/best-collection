@@ -6,8 +6,17 @@ import { ProductsContext } from "../contexts/Contexts";
 import Loader from "./Loader";
 
 const Products = () => {
-  const { products, categories } = useContext(ProductsContext);
+  const {
+    products,
+    categories,
+    productsLoading,
+    categoriesLoading,
+    productsError,
+    categoriesError,
+  } = useContext(ProductsContext);
   const [filteredItems, setFilteredItems] = useState([...products]);
+
+  console.log(productsError);
 
   useEffect(() => {
     setFilteredItems(products);
@@ -26,64 +35,81 @@ const Products = () => {
       >
         Products
       </Typography>
-      {categories && categories.length > 0 && (
-        <Stack
-          direction="row"
-          justifyContent="center"
-          alignContent="center"
-          alignItems="center"
-          sx={{ flexWrap: "wrap" }}
-          mt="40px"
-          gap={1.5}
-        >
-          <Button
-            variant="outlined"
-            sx={{
-              color: "black",
-              borderColor: "black",
-              fontSize: { lg: "17px", xs: "13px" },
-            }}
-            onClick={() => setFilteredItems([...products])}
-          >
-            All
-          </Button>
-          {categories.map((category) => (
-            <Button
-              key={category}
-              variant="outlined"
-              sx={{
-                color: "black",
-                borderColor: "black",
-                fontSize: { lg: "17px", xs: "13px" },
-              }}
-              onClick={() =>
-                setFilteredItems(
-                  products.filter((item) => item.category === category)
-                )
-              }
-            >
-              {category}
-            </Button>
-          ))}
-        </Stack>
-      )}
-
-      {products && products.length > 0 ? (
-        <Stack
-          direction="row"
-          sx={{
-            gap: "30px",
-          }}
-          flexWrap="wrap"
-          justifyContent="center"
-          mt="35px"
-        >
-          {filteredItems.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </Stack>
+      {categoriesError ? (
+        <Typography variant="h5" textAlign="center" p="2rem" color="error">
+          An error happend while fetching categories from the API
+        </Typography>
       ) : (
-        <Loader />
+        <>
+          {categoriesLoading ? (
+            <Loader />
+          ) : (
+            <Stack
+              direction="row"
+              justifyContent="center"
+              alignContent="center"
+              alignItems="center"
+              sx={{ flexWrap: "wrap" }}
+              mt="40px"
+              gap={1.5}
+            >
+              <Button
+                variant="outlined"
+                sx={{
+                  color: "black",
+                  borderColor: "black",
+                  fontSize: { lg: "17px", xs: "13px" },
+                }}
+                onClick={() => setFilteredItems([...products])}
+              >
+                All
+              </Button>
+              {categories.map((category) => (
+                <Button
+                  key={category}
+                  variant="outlined"
+                  sx={{
+                    color: "black",
+                    borderColor: "black",
+                    fontSize: { lg: "17px", xs: "13px" },
+                  }}
+                  onClick={() =>
+                    setFilteredItems(
+                      products.filter((item) => item.category === category)
+                    )
+                  }
+                >
+                  {category}
+                </Button>
+              ))}
+            </Stack>
+          )}
+        </>
+      )}
+      {productsError ? (
+        <Typography variant="h5" textAlign="center" p="2rem" color="error">
+          An error happend while fetching products from the API
+        </Typography>
+      ) : (
+        <>
+          {productsLoading ? (
+            <Loader />
+          ) : (
+            <Stack
+              direction="row"
+              sx={{
+                gap: "30px",
+              }}
+              flexWrap="wrap"
+              justifyContent="center"
+              mt="35px"
+            >
+              {filteredItems.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </Stack>
+          )}
+        </>
       )}
     </Box>
   );
