@@ -43,7 +43,7 @@ const Navbar = () => {
 
   return (
     <AppBar
-      position="static"
+      position="sticky"
       sx={{ backgroundColor: "white", width: "100%", boxShadow: "none" }}
     >
       <Container maxWidth="xl">
