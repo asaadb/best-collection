@@ -170,7 +170,7 @@ const Navbar = () => {
               aria-label="show 17 new notifications"
               color="black"
             >
-              <Badge badgeContent={cartLength} color="error">
+              <Badge badgeContent={cartLength} max={999} color="error">
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>
